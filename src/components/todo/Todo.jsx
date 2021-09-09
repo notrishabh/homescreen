@@ -42,7 +42,21 @@ const Todo = () => {
     >
       <div className="max-w-sm mt-4 bg-white rounded-2xl" ref={nodeRef}>
         <div className="handle">
-          <h3 className="inline-block mt-2 ml-4 text-lg font-semibold font-heading">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 inline-block mx-4 text-purple-500"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 6h16M4 10h16M4 14h16M4 18h16"
+            />
+          </svg>
+          <h3 className="inline-block mt-2 text-lg font-semibold font-heading">
             Todo List
           </h3>
           <button

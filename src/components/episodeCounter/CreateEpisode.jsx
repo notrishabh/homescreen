@@ -13,10 +13,10 @@ const CreateEpisode = (props) => {
   //Button for submitting
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    const addTodoToDB = {
+    const addEpisodeToDB = {
       data: stateData,
     };
-    api.insertTodo(addTodoToDB).then(() => {
+    api.insertEpisode(addEpisodeToDB).then(() => {
       props.getFunc();
       props.toggleForm(false);
     });
