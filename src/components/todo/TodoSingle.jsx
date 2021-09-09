@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "../style/index.css";
-import api from "../api";
+import "../../style/index.css";
+import api from "../../api/todo.js";
 import TextareaAutoSize from "react-autosize-textarea";
 
 const TodoSingle = (props) => {

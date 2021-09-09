@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "../style/index.css";
-import api from "../api";
+import "../../style/index.css";
+import api from "../../api/episode.js";
 
-const CreateTodo = (props) => {
+const CreateEpisode = (props) => {
   const [stateData, setStateData] = useState("");
 
   //Input Data field
@@ -54,4 +54,4 @@ const CreateTodo = (props) => {
   );
 };
 
-export default CreateTodo;
+export default CreateEpisode;
