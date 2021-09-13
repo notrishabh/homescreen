@@ -7,12 +7,26 @@ const Quote = () => {
   const [quote, setQuote] = useState(""); //Changing Quote line
   const [fontAccToTag, setFontAccToTag] = useState(""); //Changing font family in render
   const [tag, setTag] = useState([]); //Quote tag array fetched from api
+  const [selectedTags] = useState(
+    JSON.parse(localStorage.getItem("selectedTags"))
+  );
 
   const quoteX = localStorage.quoteX ? JSON.parse(localStorage.quoteX) : 0;
   const quoteY = localStorage.quoteY ? JSON.parse(localStorage.quoteY) : 0;
   const [quotePos] = useState({ x: quoteX, y: quoteY });
 
   const getRandom = () => {
+    api
+      .randomQuote()
+      .then((fetched) => {
+        setTag(fetched.data.tags); //For Quote Tag array
+        setQuote(fetched.data.content); //For Actual Quote Line
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const getFromTags = () => {
     api
       .randomQuote()
       .then((fetched) => {
