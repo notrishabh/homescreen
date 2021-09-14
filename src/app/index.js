@@ -39,7 +39,7 @@ const App = () => {
           </svg>
         </button>
       </div>
-      {openSettings ? <Settings /> : ""}
+      {openSettings ? <Settings setOpenSettings={setOpenSettings} /> : ""}
       <Quote />
       <Todo />
       <EpisodeCounter />
