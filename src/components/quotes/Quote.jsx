@@ -26,21 +26,29 @@ const Quote = () => {
         console.log(err);
       });
   };
-  const getFromTags = () => {
-    api
-      .randomQuote()
-      .then((fetched) => {
-        setTag(fetched.data.tags); //For Quote Tag array
-        setQuote(fetched.data.content); //For Actual Quote Line
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 
   useEffect(() => {
-    getRandom();
-  }, []);
+    const getFromTags = () => {
+      let tagLine = "";
+      selectedTags.map((tag) => (tagLine += tag + "|"));
+      tagLine = tagLine.substring(0, tagLine.length - 1);
+      api
+        .searchRandomQuote(tagLine)
+        .then((fetched) => {
+          setTag(fetched.data.tags); //For Quote Tag array
+          setQuote(fetched.data.content); //For Actual Quote Line
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    if (selectedTags.length > 0) {
+      getFromTags();
+    } else {
+      getRandom();
+    }
+  }, [selectedTags]);
+
   useEffect(() => {
     const changeFontAccToTag = () => {
       if (tag.includes("technology")) {
