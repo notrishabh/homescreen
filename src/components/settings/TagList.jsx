@@ -43,7 +43,7 @@ const TagList = (props) => {
           ? allTags.map((tag, i) => (
               <button
                 key={tag._id}
-                className={"rounded-lg hover:bg-blue-50 p-1"}
+                className={"rounded-lg p-1 hover:text-gray-500"}
                 onClick={() => handleTagClick(tag.name)}
                 style={
                   selectedTags.includes(tag.name) //selective styles of individual buttons

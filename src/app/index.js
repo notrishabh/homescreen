@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Todo from "../components/todo/Todo";
 import EpisodeCounter from "../components/episodeCounter/EpisodeCounter";
 import Quote from "../components/quotes/Quote";
+import DigitalClock from "../components/clock/DigitalClock";
 import Settings from "../components/settings/Settings";
 import "../style/index.css";
 
@@ -11,7 +12,7 @@ const App = () => {
     setOpenSettings(!openSettings);
   };
   return (
-    <div className={"h-screen p-5 overflow-hidden bg-cover bg-lol "}>
+    <div className={"h-screen p-5 overflow-hidden bg-cover bg-homepage "}>
       <div>
         <button
           className="float-right p-1 bg-blue-400 bg-opacity-0 rounded-2xl hover:bg-opacity-100 hover:text-gray-300"
@@ -40,6 +41,7 @@ const App = () => {
         </button>
       </div>
       {openSettings ? <Settings setOpenSettings={setOpenSettings} /> : ""}
+      <DigitalClock />
       <Quote />
       <Todo />
       <EpisodeCounter />
