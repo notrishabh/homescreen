@@ -4,6 +4,7 @@ import EpisodeCounter from "../components/episodeCounter/EpisodeCounter";
 import Quote from "../components/quotes/Quote";
 import DigitalClock from "../components/clock/DigitalClock";
 import Settings from "../components/settings/Settings";
+import Glogin from "../components/glogin/Glogin";
 import "../style/index.css";
 
 const App = () => {
@@ -42,6 +43,7 @@ const App = () => {
       </div>
       {openSettings ? <Settings setOpenSettings={setOpenSettings} /> : ""}
       <DigitalClock />
+      <Glogin />
       <Quote />
       <Todo />
       <EpisodeCounter />
