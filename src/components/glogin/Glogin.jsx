@@ -4,10 +4,10 @@ import { refreshTokenSetup } from "./refreshTokenSetup";
 import api from "../../api/glogin.js";
 const clientId = process.env.REACT_APP_GLOGIN_CLIENTID;
 
-const Glogin = () => {
+const Glogin = (props) => {
   const onSuccess = (res) => {
     api.login({ tokenId: res.tokenId }).then((response) => {
-      console.log(response);
+      props.setShowLogin(false);
     });
 
     //initializing the setup
@@ -23,6 +23,7 @@ const Glogin = () => {
         buttonText="Login"
         onSuccess={onSuccess}
         onFailure={onFailure}
+        isSignedIn={true}
         cookiePolicy={"single_host_origin"}
       />
     </div>

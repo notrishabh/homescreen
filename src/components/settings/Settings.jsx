@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import TagList from "./TagList";
+import Glogout from "../glogin/Glogout.jsx";
 
 const Settings = (props) => {
   const [openTagList, setOpenTagList] = useState(false);
@@ -36,7 +37,7 @@ const Settings = (props) => {
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
+            className="w-5 h-5"
             viewBox="0 0 20 20"
             fill="currentColor"
           >
@@ -49,6 +50,9 @@ const Settings = (props) => {
         </button>
       </div>
       {openTagList ? <TagList /> : ""}
+      <div className="p-4 bottom-0 right-0 absolute">
+        <Glogout setShowLogin={props.setShowLogin} />
+      </div>
     </div>
   );
 };

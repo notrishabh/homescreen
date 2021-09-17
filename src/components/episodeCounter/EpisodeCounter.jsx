@@ -39,7 +39,7 @@ const EpisodeCounter = () => {
   return (
     <Draggable
       handle=".handle"
-      bounds="parent"
+      bounds="body"
       onStop={handleStop}
       nodeRef={nodeRef}
       defaultPosition={{ x: episodePos.x, y: episodePos.y }}

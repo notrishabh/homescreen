@@ -15,7 +15,7 @@ const DigitalClock = () => {
   return (
     <Draggable
       nodeRef={nodeRef}
-      bounds="parent"
+      bounds="body"
       defaultPosition={{ x: clockPos.x, y: clockPos.y }}
       onStop={handleStop}
     >

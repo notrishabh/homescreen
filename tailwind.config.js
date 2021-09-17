@@ -23,6 +23,7 @@ module.exports = {
         success: ["Cinzel"],
         proverb: ["Jost"],
         technology: ["Changa"],
+        homescreen: ["Rancho"],
       },
     },
   },

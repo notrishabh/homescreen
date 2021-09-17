@@ -88,7 +88,7 @@ const Quote = () => {
   const nodeRef = React.useRef(null); //For warning in Draggable for FindDOMNode
   return (
     <Draggable
-      bounds="parent"
+      bounds="body"
       onStop={handleStop}
       nodeRef={nodeRef}
       defaultPosition={{ x: quotePos.x, y: quotePos.y }}

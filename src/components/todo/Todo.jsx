@@ -35,7 +35,7 @@ const Todo = () => {
   return (
     <Draggable
       handle=".handle"
-      bounds="parent"
+      bounds="body"
       onStop={handleStop}
       nodeRef={nodeRef}
       defaultPosition={{ x: todoPos.x, y: todoPos.y }}
