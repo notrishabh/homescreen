@@ -19,7 +19,7 @@ const Homescreen = (props) => {
       </div>
       <div className="max-w-lg mr-5 font-heading">
         <h1 className="mb-4 text-xl">Enter your Home by logging in</h1>
-        <Glogin setShowLogin={props.setShowLogin} />
+        <Glogin setShowLogin={props.setShowLogin} setUser={props.setUser} />
       </div>
     </div>
   );

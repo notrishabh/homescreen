@@ -8,6 +8,7 @@ const Glogin = (props) => {
   const onSuccess = (res) => {
     api.login({ tokenId: res.tokenId }).then((response) => {
       props.setShowLogin(false);
+      props.setUser(response.data.user);
     });
 
     //initializing the setup

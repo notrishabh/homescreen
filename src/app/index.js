@@ -5,18 +5,24 @@ import Quote from "../components/quotes/Quote";
 import DigitalClock from "../components/clock/DigitalClock";
 import Settings from "../components/settings/Settings";
 import Homescreen from "./homescreen";
+import Greet from "../components/greet/Greet";
 import "../style/index.css";
 
 const App = () => {
   const [openSettings, setOpenSettings] = useState(false);
   const [showLogin, setShowLogin] = useState(true);
+  const [user, setUser] = useState({});
+
+  React.useEffect(() => {
+    console.log(user);
+  }, [user]);
   const handleSettings = () => {
     setOpenSettings(!openSettings);
   };
   return (
     <div className={"h-screen p-5 overflow-hidden bg-cover bg-homepage "}>
       {showLogin ? (
-        <Homescreen setShowLogin={setShowLogin} />
+        <Homescreen setShowLogin={setShowLogin} setUser={setUser} />
       ) : (
         <div>
           <div>
@@ -55,6 +61,7 @@ const App = () => {
             ""
           )}
           <DigitalClock />
+          <Greet user={user} />
           <Quote />
           <Todo />
           <EpisodeCounter />
