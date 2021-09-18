@@ -1,4 +1,5 @@
 const Todo = require("../models/todo");
+var ObjectId = require("mongodb").ObjectId;
 
 let createTodo = (req, res, err) => {
 	const body = req.body;
@@ -36,7 +37,9 @@ let createTodo = (req, res, err) => {
 };
 
 let getTodo = async (req, res, err) => {
-	await Todo.find({}, (err, todos) => {
+	const id = req.query.id;
+	var userId = new ObjectId(id);
+	await Todo.find({ user: ObjectId(userId) }, (err, todos) => {
 		if (err) {
 			return res.status(400).json({ success: false, error: err });
 		}

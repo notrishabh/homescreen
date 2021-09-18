@@ -5,7 +5,8 @@ const api = axios.create({
 });
 
 export const insertEpisode = (payload) => api.post(`/episode`, payload);
-export const getAllEpisodes = () => api.get(`/getepisode`);
+export const getAllEpisodes = (id) =>
+  api.get(`/getepisode`, { params: { id: id } });
 export const updateEpisode = (id, payload) =>
   api.put(`/updateepisode/${id}`, payload);
 export const deleteEpisode = (id) => api.delete(`/deleteepisode/${id}`);

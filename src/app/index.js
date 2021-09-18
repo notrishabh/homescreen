@@ -63,8 +63,8 @@ const App = () => {
           <DigitalClock />
           <Greet user={user} />
           <Quote />
-          <Todo />
-          <EpisodeCounter />
+          <Todo user={user} />
+          <EpisodeCounter user={user} />
         </div>
       )}
     </div>

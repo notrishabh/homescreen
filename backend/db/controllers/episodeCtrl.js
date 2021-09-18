@@ -1,4 +1,5 @@
 const Episode = require("../models/episode");
+var ObjectId = require("mongodb").ObjectId;
 
 let createEpisode = (req, res, err) => {
 	const body = req.body;
@@ -36,7 +37,9 @@ let createEpisode = (req, res, err) => {
 };
 
 let getEpisode = async (req, res, err) => {
-	await Episode.find({}, (err, episodes) => {
+	const id = req.query.id;
+	var userId = new ObjectId(id);
+	await Episode.find({ user: ObjectId(userId) }, (err, episodes) => {
 		if (err) {
 			return res.status(400).json({ success: false, error: err });
 		}

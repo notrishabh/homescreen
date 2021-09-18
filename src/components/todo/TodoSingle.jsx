@@ -9,7 +9,7 @@ const TodoSingle = (props) => {
     api
       .deleteTodo(props.id)
       .then(() => {
-        props.getFunc();
+        props.getFunc(props.user._id);
       })
       .catch((err) => {
         console.log(err);
@@ -25,7 +25,7 @@ const TodoSingle = (props) => {
     await api
       .updateTodo(props.id, updateToDb)
       .then(() => {
-        props.getFunc();
+        props.getFunc(props.user._id);
       })
       .catch((err) => {
         console.log(err);

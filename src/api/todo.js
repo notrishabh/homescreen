@@ -5,7 +5,7 @@ const api = axios.create({
 });
 
 export const insertTodo = (payload) => api.post(`/todo`, payload);
-export const getAllTodos = () => api.get(`/gettodo`);
+export const getAllTodos = (id) => api.get(`/gettodo`, { params: { id: id } });
 export const updateTodo = (id, payload) =>
   api.put(`/updatetodo/${id}`, payload);
 export const deleteTodo = (id) => api.delete(`/deletetodo/${id}`);

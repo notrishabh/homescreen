@@ -14,10 +14,11 @@ const CreateTodo = (props) => {
   const handleSubmitForm = (e) => {
     e.preventDefault();
     const addTodoToDB = {
+      user: props.user._id,
       data: stateData,
     };
     api.insertTodo(addTodoToDB).then(() => {
-      props.getFunc();
+      props.getFunc(props.user._id);
       props.toggleForm(false);
     });
   };

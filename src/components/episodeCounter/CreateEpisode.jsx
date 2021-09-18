@@ -14,10 +14,11 @@ const CreateEpisode = (props) => {
   const handleSubmitForm = (e) => {
     e.preventDefault();
     const addEpisodeToDB = {
+      user: props.user._id,
       data: stateData,
     };
     api.insertEpisode(addEpisodeToDB).then(() => {
-      props.getFunc();
+      props.getFunc(props.user._id);
       props.toggleForm(false);
     });
   };

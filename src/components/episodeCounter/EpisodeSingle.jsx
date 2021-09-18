@@ -9,7 +9,7 @@ const EpisodeSingle = (props) => {
     api
       .deleteEpisode(props.id)
       .then(() => {
-        props.getFunc();
+        props.getFunc(props.user._id);
       })
       .catch((err) => {
         console.log(err);
@@ -32,7 +32,7 @@ const EpisodeSingle = (props) => {
     await api
       .updateEpisode(props.id, updateToDb)
       .then(() => {
-        props.getFunc();
+        props.getFunc(props.user._id);
       })
       .catch((err) => {
         console.log(err);
@@ -45,7 +45,7 @@ const EpisodeSingle = (props) => {
       episodeNumber: episodeNumber + 1,
     };
     await api.updateEpisode(props.id, xd).then(() => {
-      props.getFunc();
+      props.getFunc(props.user._id);
     });
   };
   const subEpisode = async () => {
@@ -60,7 +60,7 @@ const EpisodeSingle = (props) => {
       episodeNumber: episodeNumber - 1,
     };
     await api.updateEpisode(props.id, xd).then(() => {
-      props.getFunc();
+      props.getFunc(props.user._id);
     });
   };
   const handleChange = (e) => {

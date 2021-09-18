@@ -43,7 +43,10 @@ const Greet = (props) => {
       defaultPosition={{ x: greetPos.x, y: greetPos.y }}
       onStop={handleStop}
     >
-      <div className="absolute left-0 right-0 flex justify-center mx-auto w-96 top-10">
+      <div
+        className="absolute left-0 right-0 flex justify-center mx-auto w-96 top-10"
+        ref={nodeRef}
+      >
         <h1 className="text-2xl font-future">
           {greeting}, {Name ? Name.split(" ")[0] : ""}
         </h1>

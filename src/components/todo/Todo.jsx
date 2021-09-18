@@ -5,16 +5,18 @@ import CreateTodo from "./CreateTodo";
 import Draggable from "react-draggable";
 import api from "../../api/todo.js";
 
-const Todo = () => {
+const Todo = (props) => {
   const [todoData, setTodoData] = useState([{}]);
   const [addTodoBtn, setAddTodoBtn] = useState(false);
   const todoX = localStorage.todoX ? JSON.parse(localStorage.todoX) : 0;
   const todoY = localStorage.todoY ? JSON.parse(localStorage.todoY) : 0;
   const [todoPos] = useState({ x: todoX, y: todoY });
 
-  const getAllTodosFunc = async () => {
+  const userId = props.user._id;
+
+  const getAllTodosFunc = async (userId) => {
     await api
-      .getAllTodos()
+      .getAllTodos(userId)
       .then((todo) => {
         setTodoData(todo.data.allGet);
       })
@@ -23,8 +25,8 @@ const Todo = () => {
       });
   };
   useEffect(() => {
-    getAllTodosFunc();
-  }, []);
+    getAllTodosFunc(userId);
+  }, [userId]);
 
   const handleStop = (e, ui) => {
     localStorage.setItem("todoX", ui.x);
@@ -86,6 +88,7 @@ const Todo = () => {
                 id={todo._id}
                 isDone={todo.isDone}
                 getFunc={getAllTodosFunc}
+                user={props.user}
               />
             ))
           ) : (
@@ -112,6 +115,7 @@ const Todo = () => {
               <CreateTodo
                 getFunc={getAllTodosFunc}
                 toggleForm={setAddTodoBtn}
+                user={props.user}
               />
             </div>
           ) : (

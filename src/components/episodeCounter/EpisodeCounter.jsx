@@ -5,7 +5,7 @@ import CreateEpisode from "./CreateEpisode";
 import Draggable from "react-draggable";
 import api from "../../api/episode.js";
 
-const EpisodeCounter = () => {
+const EpisodeCounter = (props) => {
   const [episodeData, setepisodeData] = useState([{}]);
   const [addEpisodeBtn, setAddEpisodeBtn] = useState(false);
   const episodeX = localStorage.episodeX
@@ -15,10 +15,11 @@ const EpisodeCounter = () => {
     ? JSON.parse(localStorage.episodeY)
     : 0;
   const [episodePos] = useState({ x: episodeX, y: episodeY });
+  const userId = props.user._id;
 
-  const getAllEpisodesFunc = async () => {
+  const getAllEpisodesFunc = async (userId) => {
     await api
-      .getAllEpisodes()
+      .getAllEpisodes(userId)
       .then((episode) => {
         setepisodeData(episode.data.allGet);
       })
@@ -27,8 +28,8 @@ const EpisodeCounter = () => {
       });
   };
   useEffect(() => {
-    getAllEpisodesFunc();
-  }, []);
+    getAllEpisodesFunc(userId);
+  }, [userId]);
 
   const handleStop = (e, ui) => {
     localStorage.setItem("episodeX", ui.x);
@@ -90,6 +91,7 @@ const EpisodeCounter = () => {
                 id={episode._id}
                 episodeNumber={episode.episodeNumber}
                 getFunc={getAllEpisodesFunc}
+                user={props.user}
               />
             ))
           ) : (
@@ -116,6 +118,7 @@ const EpisodeCounter = () => {
               <CreateEpisode
                 getFunc={getAllEpisodesFunc}
                 toggleForm={setAddEpisodeBtn}
+                user={props.user}
               />
             </div>
           ) : (
