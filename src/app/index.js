@@ -13,9 +13,6 @@ const App = () => {
   const [showLogin, setShowLogin] = useState(true);
   const [user, setUser] = useState({});
 
-  React.useEffect(() => {
-    console.log(user);
-  }, [user]);
   const handleSettings = () => {
     setOpenSettings(!openSettings);
   };

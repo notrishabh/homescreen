@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TagList from "./TagList";
 import Glogout from "../glogin/Glogout.jsx";
+import Background from "./Background.jsx";
 
 const Settings = (props) => {
   const [openTagList, setOpenTagList] = useState(false);
@@ -50,6 +51,7 @@ const Settings = (props) => {
         </button>
       </div>
       {openTagList ? <TagList /> : ""}
+      <Background />
       <div className="p-4 bottom-0 right-0 absolute">
         <Glogout setShowLogin={props.setShowLogin} />
       </div>
