@@ -19,7 +19,10 @@ const DigitalClock = () => {
       defaultPosition={{ x: clockPos.x, y: clockPos.y }}
       onStop={handleStop}
     >
-      <div className="max-w-xs text-xl font-heading" ref={nodeRef}>
+      <div
+        className="cursor-default max-w-xs text-xl font-heading"
+        ref={nodeRef}
+      >
         <div>
           <Clock className="" format={"h:mm A"} />
         </div>

@@ -22,6 +22,8 @@
     "react-google-login": "^5.2.2",
     "react-live-clock": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-spring": "^9.2.4",
+    "react-transition-group": "^4.4.2",
     "web-vitals": "^1.1.2"
   },
   "scripts": {

@@ -1,12 +1,30 @@
 import React, { useState } from "react";
+import Main from "./Main.jsx";
 import TagList from "./TagList";
-import Glogout from "../glogin/Glogout.jsx";
 import Background from "./Background.jsx";
 
 const Settings = (props) => {
   const [openTagList, setOpenTagList] = useState(false);
+  const [openBackground, setOpenBackground] = useState(false);
+
   const handleClose = () => {
     props.setOpenSettings(false);
+  };
+
+  const Conditional = () => {
+    if (openTagList) {
+      return <TagList setOpenTagList={setOpenTagList} />;
+    } else if (openBackground) {
+      return <Background setOpenBackground={setOpenBackground} />;
+    } else {
+      return (
+        <Main
+          setOpenTagList={setOpenTagList}
+          setShowLogin={props.setShowLogin}
+          setOpenBackground={setOpenBackground}
+        />
+      );
+    }
   };
   return (
     <div className="absolute left-0 right-0 z-40 w-2/4 p-4 mx-auto bg-transparent rounded-xl h-2/4 backdrop-filter backdrop-blur-lg backdrop-saturate-200 ">
@@ -29,32 +47,8 @@ const Settings = (props) => {
           />
         </svg>
       </button>
-      <h1 className="m-3 text-4xl font-heading">Settings</h1>
-      <div className="flex justify-start m-3 mb-4 align-center">
-        <p className="p-1 font-bold">Set tags for Quotes</p>
-        <button
-          onClick={() => setOpenTagList(!openTagList)}
-          className="p-1 rounded-xl hover:bg-gray-100 "
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-5 h-5"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fillRule="evenodd"
-              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </button>
-      </div>
-      {openTagList ? <TagList /> : ""}
-      <Background />
-      <div className="p-4 bottom-0 right-0 absolute">
-        <Glogout setShowLogin={props.setShowLogin} />
-      </div>
+      <h1 className="m-3 mb-7 text-4xl font-heading">Settings</h1>
+      <Conditional />
     </div>
   );
 };

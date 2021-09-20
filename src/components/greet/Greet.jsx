@@ -44,7 +44,7 @@ const Greet = (props) => {
       onStop={handleStop}
     >
       <div
-        className="absolute left-0 right-0 flex justify-center mx-auto w-96 top-10"
+        className="cursor-default absolute left-0 right-0 flex justify-center mx-auto w-96 top-10"
         ref={nodeRef}
       >
         <h1 className="text-2xl font-future">

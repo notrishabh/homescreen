@@ -93,7 +93,7 @@ const Quote = () => {
       nodeRef={nodeRef}
       defaultPosition={{ x: quotePos.x, y: quotePos.y }}
     >
-      <div className="grid place-items-center" ref={nodeRef}>
+      <div className="grid place-items-center cursor-default" ref={nodeRef}>
         <div>
           <p className="inline text-4xl ">" </p>
           <h1 className={`inline text-2xl font-${fontAccToTag} `}>{quote}</h1>
