@@ -28,12 +28,35 @@ const Settings = (props) => {
       );
     }
   };
+  //Dropping animation of settings
+  const dropIn = {
+    hidden: {
+      y: "-100vh",
+      opacity: 0,
+    },
+    visible: {
+      y: "0",
+      opacity: 1,
+      transition: {
+        duration: 0.2,
+        type: "spring",
+        damping: 25,
+        stiffness: 500,
+      },
+    },
+    exit: {
+      y: "20vh",
+      opacity: 0,
+    },
+  };
   return (
     <Backdrop onClick={handleClose}>
       <motion.div
         onClick={(e) => e.stopPropagation()}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        variants={dropIn}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
         className="absolute left-0 right-0 z-40 w-2/4 p-4 mx-auto mt-10 bg-transparent rounded-xl h-2/4 backdrop-filter backdrop-blur-lg backdrop-saturate-200 "
       >
         <button

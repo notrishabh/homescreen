@@ -45,7 +45,10 @@ const EpisodeCounter = (props) => {
       nodeRef={nodeRef}
       defaultPosition={{ x: episodePos.x, y: episodePos.y }}
     >
-      <div className="max-w-sm mt-4 bg-white rounded-2xl" ref={nodeRef}>
+      <div
+        className="absolute max-w-sm mt-4 bg-white rounded-2xl"
+        ref={nodeRef}
+      >
         <div className="cursor-move handle">
           <svg
             xmlns="http://www.w3.org/2000/svg"

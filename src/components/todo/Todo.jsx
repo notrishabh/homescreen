@@ -42,7 +42,11 @@ const Todo = (props) => {
       nodeRef={nodeRef}
       defaultPosition={{ x: todoPos.x, y: todoPos.y }}
     >
-      <div className="max-w-sm mt-4 bg-white rounded-2xl" ref={nodeRef}>
+      <div
+        style={{ minWidth: "350px" }}
+        className="absolute max-w-sm mt-4 bg-white rounded-2xl"
+        ref={nodeRef}
+      >
         <div className="handle cursor-move">
           <svg
             xmlns="http://www.w3.org/2000/svg"
