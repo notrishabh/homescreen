@@ -1,57 +1,38 @@
-import React, { useState, useEffect } from "react";
-import { useTransition, animated, useSpring, useSpringRef } from "react-spring";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-function Toggle() {
-  const [toggle, setToggle] = useState(false);
-  const props = useSpring({
-    to: {
-      transform: "translate3d(10px,0,0) scale(1) rotateX(180deg)",
-    },
-    from: {
-      transform: "translate3d(0px,0,0) scale(0.2) rotateX(0deg)",
-    },
-    delay: 500,
-    reset: true,
-    reverse: toggle,
-    onRest: () => setToggle(!toggle),
-  });
+const Animate = () => {
+  const [vis, setVis] = useState(true);
+  const handleClick = () => {
+    setVis(!vis);
+  };
   return (
     <div>
-      <animated.h1 style={props} className="text-xl">
-        lol
-      </animated.h1>
-    </div>
-  );
-}
-
-const Hello = () => {
-  const [vis, setVis] = useState(false);
-  const transRef = useSpringRef();
-  const transition = useTransition(vis, {
-    ref: transRef,
-    from: { opacity: 0, transform: "translate3d(100%,0,0)" },
-    enter: { opacity: 1, transform: "translate3d(0%,0,0)" },
-    leave: { opacity: 1, transform: "translate3d(0%,50%,0)" },
-    reverse: vis,
-    reset: true,
-  });
-  useEffect(() => {
-    transRef.start();
-  }, [vis]);
-  return (
-    <div>
-      <button onClick={() => setVis(!vis)}>click</button>
-      <div>
-        {transition((style, item) =>
-          item ? (
-            <animated.h1 style={style}>hello</animated.h1>
-          ) : (
-            <animated.h1 style={style}>bye</animated.h1>
-          )
+      <button onClick={handleClick}>click</button>
+      <AnimatePresence exitBeforeEnter>
+        {vis ? (
+          <motion.div
+            initial={{ opacity: 0 }}
+            key={1}
+            animate={{
+              opacity: 1,
+            }}
+            exit={{ opacity: 0 }}
+            style={{ width: "100px", height: "100px", backgroundColor: "red" }}
+          ></motion.div>
+        ) : (
+          <motion.div
+            key={2}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            hello
+          </motion.div>
         )}
-      </div>
+      </AnimatePresence>
     </div>
   );
 };
 
-export default Hello;
+export default Animate;

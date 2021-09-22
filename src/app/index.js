@@ -8,6 +8,7 @@ import Homescreen from "./homescreen";
 import Greet from "../components/greet/Greet";
 import "../style/index.css";
 import Toggle from "../components/AnimateDemo.jsx";
+import { motion, AnimatePresence } from "framer-motion";
 
 const App = () => {
   const [openSettings, setOpenSettings] = useState(false);
@@ -24,8 +25,10 @@ const App = () => {
       ) : (
         <div>
           <div>
-            <button
-              className="float-right p-1 bg-blue-400 bg-opacity-0 rounded-2xl hover:bg-opacity-100 hover:text-gray-300"
+            <motion.button
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.9 }}
+              className="float-right p-1 bg-blue-400 bg-opacity-0 rounded-2xl "
               onClick={handleSettings}
             >
               <svg
@@ -48,16 +51,18 @@ const App = () => {
                   d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
                 />
               </svg>
-            </button>
+            </motion.button>
           </div>
-          {openSettings ? (
-            <Settings
-              setOpenSettings={setOpenSettings}
-              setShowLogin={setShowLogin}
-            />
-          ) : (
-            ""
-          )}
+          <AnimatePresence initial={false} exitBeforeEnter={true}>
+            {openSettings ? (
+              <Settings
+                setOpenSettings={setOpenSettings}
+                setShowLogin={setShowLogin}
+              />
+            ) : (
+              ""
+            )}
+          </AnimatePresence>
           <DigitalClock />
           <Greet user={user} />
           <Toggle />
