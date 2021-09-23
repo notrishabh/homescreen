@@ -1,33 +1,17 @@
 import React, { useState } from "react";
 import Main from "./Main.jsx";
-import TagList from "./TagList";
+import SecondPage from "./SecondPage.jsx";
 import Backdrop from "./Backdrop.jsx";
-import Background from "./Background.jsx";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Settings = (props) => {
-  const [openTagList, setOpenTagList] = useState(false);
-  const [openBackground, setOpenBackground] = useState(false);
+  //Change the condition by the clicked button page from main to pass as a prop in secondpage
+  const [selectedPage, setSelectedPage] = useState("");
 
   const handleClose = () => {
     props.setOpenSettings(false);
   };
 
-  const Conditional = () => {
-    if (openTagList) {
-      return <TagList setOpenTagList={setOpenTagList} />;
-    } else if (openBackground) {
-      return <Background setOpenBackground={setOpenBackground} />;
-    } else {
-      return (
-        <Main
-          setOpenTagList={setOpenTagList}
-          setShowLogin={props.setShowLogin}
-          setOpenBackground={setOpenBackground}
-        />
-      );
-    }
-  };
   //Dropping animation of settings
   const dropIn = {
     hidden: {
@@ -59,8 +43,10 @@ const Settings = (props) => {
         exit="exit"
         className="absolute left-0 right-0 z-40 w-2/4 p-4 mx-auto mt-10 bg-transparent rounded-xl h-2/4 backdrop-filter backdrop-blur-lg backdrop-saturate-200 "
       >
-        <button
-          className="float-right p-px hover:bg-red-300 rounded-xl"
+        <motion.button
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.9 }}
+          className="float-right p-px rounded-xl"
           onClick={handleClose}
         >
           <svg
@@ -77,9 +63,24 @@ const Settings = (props) => {
               d="M6 18L18 6M6 6l12 12"
             />
           </svg>
-        </button>
+        </motion.button>
         <h1 className="m-3 text-4xl mb-7 font-heading">Settings</h1>
-        <Conditional />
+        <div className="relative">
+          <AnimatePresence initial={false}>
+            {selectedPage === "" ? (
+              <Main
+                key={"main"}
+                setShowLogin={props.setShowLogin}
+                setSelectedPage={setSelectedPage}
+              />
+            ) : (
+              <SecondPage
+                selectedPage={selectedPage}
+                setSelectedPage={setSelectedPage}
+              />
+            )}
+          </AnimatePresence>
+        </div>
       </motion.div>
     </Backdrop>
   );

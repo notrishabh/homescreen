@@ -7,7 +7,6 @@ import Settings from "../components/settings/Settings";
 import Homescreen from "./homescreen";
 import Greet from "../components/greet/Greet";
 import "../style/index.css";
-import Toggle from "../components/AnimateDemo.jsx";
 import { motion, AnimatePresence } from "framer-motion";
 
 const App = () => {
@@ -65,7 +64,6 @@ const App = () => {
           </AnimatePresence>
           <DigitalClock />
           <Greet user={user} />
-          <Toggle />
           <Quote />
           <Todo user={user} />
           <EpisodeCounter user={user} />

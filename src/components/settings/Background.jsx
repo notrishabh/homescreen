@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import api from "../../api/unsplash.js";
+import { motion } from "framer-motion";
 
 const Background = (props) => {
   const [imageUrls, setImageUrls] = useState({});
@@ -13,28 +14,54 @@ const Background = (props) => {
         console.log(err);
       });
   };
-  const searchImageByQuery = () => {
-    api
-      .searchImage()
-      .then((fetched) => {
-        setImageUrls(fetched.data.urls);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  //const searchImageByQuery = () => {
+  //api
+  //.searchImage()
+  //.then((fetched) => {
+  //setImageUrls(fetched.data.urls);
+  //})
+  //.catch((err) => {
+  //console.log(err);
+  //});
+  //};
+  const slideAnimation = {
+    initial: {
+      x: "30vw",
+      opacity: 0,
+    },
+    visible: {
+      x: 0,
+      opacity: 1,
+    },
+    exit: {
+      x: "30vw",
+      opacity: 0,
+    },
+  };
+  const slideTransition = {
+    type: "tween",
+    ease: "anticipate",
+    duration: 1,
   };
   return (
-    <div>
-      <div className="flex justify-start align-center text-lg pb-5">
+    <motion.div
+      initial="initial"
+      animate="visible"
+      exit="exit"
+      variants={slideAnimation}
+      transition={slideTransition}
+      className="absolute"
+    >
+      <div className="flex justify-start pb-5 text-lg align-center">
         <button
           className="p-1 pr-3 rounded-xl hover:bg-gray-100 "
           onClick={() => {
-            props.setOpenBackground(false);
+            props.setSelectedPage("");
           }}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
+            className="w-5 h-5"
             viewBox="0 0 20 20"
             fill="currentColor"
           >
@@ -54,7 +81,7 @@ const Background = (props) => {
           backgroundImage: `url(${imageUrls.thumb})`,
         }}
       ></div>
-    </div>
+    </motion.div>
   );
 };
 

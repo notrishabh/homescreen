@@ -1,14 +1,41 @@
 import React from "react";
 import Glogout from "../glogin/Glogout.jsx";
+import { motion } from "framer-motion";
 
 const Main = (props) => {
+  const slideAnimation = {
+    initial: {
+      x: "30vw",
+      opacity: 0,
+    },
+    visible: {
+      x: 0,
+      opacity: 1,
+    },
+    exit: {
+      x: "-30vw",
+      opacity: 0,
+    },
+  };
+  const slideTransition = {
+    type: "tween",
+    ease: "anticipate",
+    duration: 1,
+  };
   return (
-    <div>
-      <div className="flex flex-col m-3 mb-4 align-center">
+    <motion.div
+      initial="initial"
+      animate="visible"
+      exit="exit"
+      variants={slideAnimation}
+      transition={slideTransition}
+      className="absolute"
+    >
+      <div className="flex flex-col mb-4 ml-3 align-center">
         <div className="flex justify-start align-center mb-3">
           <p className="p-1 font-bold">Set tags for Quotes</p>
           <button
-            onClick={() => props.setOpenTagList(true)}
+            onClick={() => props.setSelectedPage("Taglist")}
             className="p-1 rounded-xl hover:bg-gray-100 "
           >
             <svg
@@ -28,12 +55,12 @@ const Main = (props) => {
         <div className="flex justify-start align-center mb-3">
           <p className="p-1 font-bold">Change Background</p>
           <button
-            onClick={() => props.setOpenBackground(true)}
+            onClick={() => props.setSelectedPage("Background")}
             className="p-1 rounded-xl hover:bg-gray-100 "
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
+              className="w-5 h-5"
               viewBox="0 0 20 20"
               fill="currentColor"
             >
@@ -46,10 +73,10 @@ const Main = (props) => {
           </button>
         </div>
       </div>
-      <div className="p-4 bottom-0 right-0 absolute">
+      <div className="bottom-0 right-0 p-4 ">
         <Glogout setShowLogin={props.setShowLogin} />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

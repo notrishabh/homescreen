@@ -6,30 +6,34 @@ const Animate = () => {
   const handleClick = () => {
     setVis(!vis);
   };
+  const Sq = () => {
+    return (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: 1,
+        }}
+        exit={{ opacity: 0, x: 500 }}
+        style={{ width: "100px", height: "100px", backgroundColor: "red" }}
+      ></motion.div>
+    );
+  };
+  const Hel = () => {
+    return (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0, y: 100 }}
+      >
+        hello
+      </motion.div>
+    );
+  };
   return (
     <div>
       <button onClick={handleClick}>click</button>
       <AnimatePresence exitBeforeEnter>
-        {vis ? (
-          <motion.div
-            initial={{ opacity: 0 }}
-            key={1}
-            animate={{
-              opacity: 1,
-            }}
-            exit={{ opacity: 0 }}
-            style={{ width: "100px", height: "100px", backgroundColor: "red" }}
-          ></motion.div>
-        ) : (
-          <motion.div
-            key={2}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            hello
-          </motion.div>
-        )}
+        {vis ? <Sq key={1} /> : <Hel key={2} />}
       </AnimatePresence>
     </div>
   );

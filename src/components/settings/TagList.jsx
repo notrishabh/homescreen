@@ -39,7 +39,7 @@ const TagList = (props) => {
         <button
           className="p-1 pr-3 rounded-xl hover:bg-gray-100 "
           onClick={() => {
-            props.setOpenTagList(false);
+            props.setSelectedPage("");
           }}
         >
           <svg
