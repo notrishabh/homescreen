@@ -32,7 +32,7 @@ const Main = (props) => {
       className="absolute"
     >
       <div className="flex flex-col mb-4 ml-3 align-center">
-        <div className="flex justify-start align-center mb-3">
+        <div className="flex justify-start mb-3 align-center">
           <p className="p-1 font-bold">Set tags for Quotes</p>
           <button
             onClick={() => props.setSelectedPage("Taglist")}
@@ -73,7 +73,7 @@ const Main = (props) => {
           </button>
         </div>
       </div>
-      <div className="bottom-0 right-0 p-4 ">
+      <div className=" bottom-0 right-0 p-4 ">
         <Glogout setShowLogin={props.setShowLogin} />
       </div>
     </motion.div>
