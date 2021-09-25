@@ -4,6 +4,18 @@ import { motion } from "framer-motion";
 
 const Background = (props) => {
   const [imageUrls, setImageUrls] = useState({});
+  const [imagesSearched, setImagesSearched] = useState();
+
+  //handle search form
+  const [searchValue, setSearchValue] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    searchImageByQuery();
+  };
+  const handleChange = (e) => {
+    setSearchValue(e.target.value);
+  };
+
   const getRandom = () => {
     api
       .randomImage()
@@ -14,16 +26,17 @@ const Background = (props) => {
         console.log(err);
       });
   };
-  //const searchImageByQuery = () => {
-  //api
-  //.searchImage()
-  //.then((fetched) => {
-  //setImageUrls(fetched.data.urls);
-  //})
-  //.catch((err) => {
-  //console.log(err);
-  //});
-  //};
+  const searchImageByQuery = () => {
+    api
+      .searchImage(searchValue)
+      .then((fetched) => {
+        setImagesSearched(fetched.data.results);
+        console.log(fetched.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const slideAnimation = {
     initial: {
       x: "30vw",
@@ -43,6 +56,10 @@ const Background = (props) => {
     ease: "anticipate",
     duration: 1,
   };
+  const inputRef = React.useRef(null); //Form input focus ref
+  React.useEffect(() => {
+    inputRef.current.focus();
+  }, []);
   return (
     <motion.div
       initial="initial"
@@ -50,7 +67,7 @@ const Background = (props) => {
       exit="exit"
       variants={slideAnimation}
       transition={slideTransition}
-      className="absolute"
+      //className="absolute"
     >
       <div className="flex justify-start pb-5 text-lg align-center">
         <button
@@ -74,13 +91,36 @@ const Background = (props) => {
         </button>
         <h1 className="font-bold">Select Background</h1>
       </div>
-      <button onClick={getRandom}>random</button>
-      <div
-        className="bg-cover w-28 h-28"
-        style={{
-          backgroundImage: `url(${imageUrls.thumb})`,
-        }}
-      ></div>
+      {
+        //<button onClick={getRandom}>random</button>
+        //<div
+        //className="bg-cover w-28 h-28"
+        //style={{
+        //backgroundImage: `url(${imageUrls.thumb})`,
+        //}}
+        //></div>
+      }
+      <form onSubmit={handleSubmit}>
+        <input
+          ref={inputRef}
+          type="text"
+          value={searchValue}
+          onChange={handleChange}
+        />
+        <button type="submit">search</button>
+      </form>
+      <div className="  grid grid-flow-col grid-rows-2 gap-5 mt-4 mx-4">
+        {imagesSearched
+          ? imagesSearched.map((image) => (
+              <div
+                className="bg-cover w-28 h-28"
+                style={{
+                  backgroundImage: `url(${image.urls.thumb})`,
+                }}
+              ></div>
+            ))
+          : ""}
+      </div>
     </motion.div>
   );
 };

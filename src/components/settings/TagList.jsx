@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import quoteApi from "../../api/quote.js";
+import { motion } from "framer-motion";
 
 const TagList = (props) => {
   const [allTags, setAllTags] = useState([]);
@@ -33,9 +34,36 @@ const TagList = (props) => {
       setSelectedTags((prevTags) => [...prevTags, tagName]); //Appending tags to the array
     }
   };
+
+  const slideAnimation = {
+    initial: {
+      scale: 0.5,
+      opacity: 0,
+    },
+    visible: {
+      scale: 1,
+      opacity: 1,
+    },
+    exit: {
+      scale: 0,
+      opacity: 0,
+    },
+  };
+  const slideTransition = {
+    type: "tween",
+    ease: "anticipate",
+    duration: 1,
+  };
   return (
-    <div className="">
-      <div className="flex justify-start align-center text-lg pb-5">
+    <motion.div
+      initial="initial"
+      animate="visible"
+      exit="exit"
+      variants={slideAnimation}
+      transition={slideTransition}
+      //className="absolute"
+    >
+      <div className="flex justify-start pb-5 text-lg align-center">
         <button
           className="p-1 pr-3 rounded-xl hover:bg-gray-100 "
           onClick={() => {
@@ -78,7 +106,7 @@ const TagList = (props) => {
             ))
           : "......."}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

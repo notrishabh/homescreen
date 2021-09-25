@@ -44,7 +44,7 @@ const Todo = (props) => {
     >
       <div
         style={{ minWidth: "350px" }}
-        className=" max-w-sm mt-4 bg-white rounded-2xl"
+        className=" absolute max-w-sm mt-4 bg-white rounded-2xl"
         ref={nodeRef}
       >
         <div className="handle cursor-move">

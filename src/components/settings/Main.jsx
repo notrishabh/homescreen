@@ -29,7 +29,7 @@ const Main = (props) => {
       exit="exit"
       variants={slideAnimation}
       transition={slideTransition}
-      className="absolute"
+      //className="absolute"
     >
       <div className="flex flex-col mb-4 ml-3 align-center">
         <div className="flex justify-start mb-3 align-center">

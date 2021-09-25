@@ -13,35 +13,58 @@ const Settings = (props) => {
   };
 
   //Dropping animation of settings
-  const dropIn = {
+  //const dropIn = {
+  //hidden: {
+  //y: "-100vh",
+  //opacity: 0,
+  //},
+  //visible: {
+  //y: "0",
+  //opacity: 1,
+  //transition: {
+  //duration: 0.2,
+  //type: "spring",
+  //damping: 25,
+  //stiffness: 500,
+  //},
+  //},
+  //exit: {
+  //y: "20vh",
+  //opacity: 0,
+  //},
+  //};
+  const topLeftScale = {
     hidden: {
-      y: "-100vh",
-      opacity: 0,
+      x: "30vw",
+      y: "-20vh",
+      scale: 0,
     },
     visible: {
+      x: "0",
       y: "0",
-      opacity: 1,
+      scale: 1,
       transition: {
-        duration: 0.2,
         type: "spring",
-        damping: 25,
+        damping: 100,
         stiffness: 500,
       },
     },
     exit: {
-      y: "20vh",
-      opacity: 0,
+      x: "30vw",
+      y: "-20vh",
+      scale: 0,
     },
   };
   return (
     <Backdrop onClick={handleClose}>
       <motion.div
         onClick={(e) => e.stopPropagation()}
-        variants={dropIn}
+        variants={topLeftScale}
         initial="hidden"
         animate="visible"
         exit="exit"
-        className="absolute left-0 right-0 z-40 w-2/4 p-4 mx-auto mt-10 bg-transparent rounded-xl h-2/4 backdrop-filter backdrop-blur-lg backdrop-saturate-200 "
+        style={{ minHeight: "50vh" }}
+        className="absolute left-0 right-0 z-40 w-1/2 p-4 mx-auto mt-10 bg-transparent rounded-xl backdrop-filter backdrop-blur-lg backdrop-saturate-200 "
       >
         <motion.button
           whileHover={{ scale: 1.2 }}
@@ -65,7 +88,7 @@ const Settings = (props) => {
           </svg>
         </motion.button>
         <h1 className="m-3 text-4xl mb-7 font-heading">Settings</h1>
-        <div className="relative">
+        <div className="">
           <AnimatePresence initial={false}>
             {selectedPage === "" ? (
               <Main
