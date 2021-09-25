@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import api from "../../api/unsplash.js";
 import { motion } from "framer-motion";
+import settingsapi from "../../api/settingsbg.js";
 
 const Background = (props) => {
-  const [imageUrls, setImageUrls] = useState({});
+  //const [imageUrls, setImageUrls] = useState({});
   const [imagesSearched, setImagesSearched] = useState();
 
   //handle search form
@@ -16,39 +17,51 @@ const Background = (props) => {
     setSearchValue(e.target.value);
   };
 
-  const getRandom = () => {
-    api
-      .randomImage()
-      .then((fetched) => {
-        setImageUrls(fetched.data.urls);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  //const getRandom = () => {
+  //api
+  //.randomImage()
+  //.then((fetched) => {
+  //setImageUrls(fetched.data.urls);
+  //})
+  //.catch((err) => {
+  //console.log(err);
+  //});
+  //};
   const searchImageByQuery = () => {
     api
       .searchImage(searchValue)
       .then((fetched) => {
         setImagesSearched(fetched.data.results);
-        console.log(fetched.data);
       })
       .catch((err) => {
         console.log(err);
       });
   };
+  const handleChangeBg = (image) => {
+    let fullURL = image.urls.full ? image.urls.full : image.urls.raw;
+    const addSettingsToDb = {
+      user: props.user._id,
+      url: fullURL,
+    };
+    settingsapi.updateBG(addSettingsToDb).then(() => {
+      props.setBackgroundURL(fullURL);
+    });
+  };
   const slideAnimation = {
     initial: {
-      x: "30vw",
+      scale: 0.5,
       opacity: 0,
+      position: "absolute",
     },
     visible: {
-      x: 0,
+      scale: 1,
       opacity: 1,
+      position: "relative",
     },
     exit: {
-      x: "30vw",
+      scale: 0,
       opacity: 0,
+      position: "absolute",
     },
   };
   const slideTransition = {
@@ -100,24 +113,42 @@ const Background = (props) => {
         //}}
         //></div>
       }
-      <form onSubmit={handleSubmit}>
-        <input
-          ref={inputRef}
-          type="text"
-          value={searchValue}
-          onChange={handleChange}
-        />
-        <button type="submit">search</button>
-      </form>
-      <div className="  grid grid-flow-col grid-rows-2 gap-5 mt-4 mx-4">
+      <div className="flex align-center">
+        <form onSubmit={handleSubmit}>
+          <input
+            ref={inputRef}
+            type="text"
+            value={searchValue}
+            onChange={handleChange}
+            className="px-1 mx-5 rounded ring focus:outline-none focus:border-blue-300 font-heading"
+          />
+          <button type="submit" className="p-1 rounded-xl hover:bg-gray-100 ">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-5 h-5 "
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </button>
+        </form>
+      </div>
+      <div className="flex flex-wrap my-3 align-center justify-between">
         {imagesSearched
           ? imagesSearched.map((image) => (
-              <div
-                className="bg-cover w-28 h-28"
+              <button
+                key={image.id}
+                className="bg-cover w-28 h-28 rounded-lg my-2 mx-3"
                 style={{
                   backgroundImage: `url(${image.urls.thumb})`,
                 }}
-              ></div>
+                onClick={() => handleChangeBg(image)}
+              ></button>
             ))
           : ""}
       </div>

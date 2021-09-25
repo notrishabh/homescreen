@@ -5,16 +5,19 @@ import { motion } from "framer-motion";
 const Main = (props) => {
   const slideAnimation = {
     initial: {
-      x: "30vw",
+      scale: 0.5,
       opacity: 0,
+      position: "absolute",
     },
     visible: {
-      x: 0,
+      scale: 1,
       opacity: 1,
+      position: "relative",
     },
     exit: {
-      x: "-30vw",
+      scale: 0,
       opacity: 0,
+      position: "absolute",
     },
   };
   const slideTransition = {

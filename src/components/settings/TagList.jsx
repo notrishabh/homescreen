@@ -39,14 +39,17 @@ const TagList = (props) => {
     initial: {
       scale: 0.5,
       opacity: 0,
+      position: "absolute",
     },
     visible: {
       scale: 1,
       opacity: 1,
+      position: "relative",
     },
     exit: {
       scale: 0,
       opacity: 0,
+      position: "absolute",
     },
   };
   const slideTransition = {
@@ -72,7 +75,7 @@ const TagList = (props) => {
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
+            className="w-5 h-5"
             viewBox="0 0 20 20"
             fill="currentColor"
           >
@@ -88,7 +91,7 @@ const TagList = (props) => {
       <div className="flex justify-between mx-4">
         <h1 className="">Deselect all for random</h1>
       </div>
-      <div className="grid grid-flow-col grid-rows-3 gap-4 mt-4 mx-4">
+      <div className="mx-4 mt-4 grid grid-flow-col grid-rows-3 gap-4">
         {allTags.length
           ? allTags.map((tag, i) => (
               <button

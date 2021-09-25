@@ -5,6 +5,7 @@ const db = require("./db");
 const todoRouter = require("./db/routes/todoRouter");
 const episodeRouter = require("./db/routes/episodeRouter");
 const gloginRouter = require("./db/routes/gloginRouter");
+const settingsBGRouter = require("./db/routes/settingsBGRouter");
 const app = express();
 const port = 7000;
 
@@ -23,6 +24,7 @@ app.get("/", (req, res) => {
 app.use("/todoapi", todoRouter);
 app.use("/episodeapi", episodeRouter);
 app.use("/googlelogin", gloginRouter);
+app.use("/settingsbg", settingsBGRouter);
 
 app.listen(port, () => {
 	console.log(`server listening on port ${port}`);

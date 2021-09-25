@@ -7,7 +7,6 @@ import { motion, AnimatePresence } from "framer-motion";
 const Settings = (props) => {
   //Change the condition by the clicked button page from main to pass as a prop in secondpage
   const [selectedPage, setSelectedPage] = useState("");
-
   const handleClose = () => {
     props.setOpenSettings(false);
   };
@@ -100,6 +99,8 @@ const Settings = (props) => {
               <SecondPage
                 selectedPage={selectedPage}
                 setSelectedPage={setSelectedPage}
+                setBackgroundURL={props.setBackgroundURL}
+                user={props.user}
               />
             )}
           </AnimatePresence>

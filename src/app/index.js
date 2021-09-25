@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Todo from "../components/todo/Todo";
 import EpisodeCounter from "../components/episodeCounter/EpisodeCounter";
 import Quote from "../components/quotes/Quote";
@@ -9,16 +9,47 @@ import Greet from "../components/greet/Greet";
 import "../style/index.css";
 import { motion, AnimatePresence } from "framer-motion";
 
+import bgsettingsapi from "../api/settingsbg";
+
 const App = () => {
   const [openSettings, setOpenSettings] = useState(false);
   const [showLogin, setShowLogin] = useState(true);
   const [user, setUser] = useState({});
+  const [backgroundURL, setBackgroundURL] = useState("");
+
+  //Get Background from api
+
+  const getBgURL = async (userId) => {
+    await bgsettingsapi
+      .getBGurl(userId)
+      .then((bgURL) => {
+        let fetched = bgURL ? bgURL.data.url[0].url : null;
+        setBackgroundURL(fetched);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   const handleSettings = () => {
     setOpenSettings(!openSettings);
   };
+  useEffect(() => {
+    getBgURL(user._id);
+  }, [user]);
+
+  const defaultBG =
+    "https://images.pexels.com/photos/2310713/pexels-photo-2310713.jpeg?auto=compress&cs=tinysrgb&h=650&w=940";
+
   return (
-    <div className={"h-screen p-5 overflow-hidden bg-cover bg-homepage "}>
+    <div
+      style={{
+        backgroundImage: backgroundURL
+          ? `url(${backgroundURL})`
+          : `url(${defaultBG})`,
+      }}
+      className={"h-screen p-5 overflow-hidden bg-cover bg-homepage "}
+    >
       {showLogin ? (
         <Homescreen setShowLogin={setShowLogin} setUser={setUser} />
       ) : (
@@ -57,6 +88,8 @@ const App = () => {
               <Settings
                 setOpenSettings={setOpenSettings}
                 setShowLogin={setShowLogin}
+                setBackgroundURL={setBackgroundURL}
+                user={user}
               />
             ) : (
               ""
