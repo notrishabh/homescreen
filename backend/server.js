@@ -7,7 +7,7 @@ const episodeRouter = require("./db/routes/episodeRouter");
 const gloginRouter = require("./db/routes/gloginRouter");
 const settingsBGRouter = require("./db/routes/settingsBGRouter");
 const app = express();
-const port = 7000;
+const port = process.env.PORT || 7000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());

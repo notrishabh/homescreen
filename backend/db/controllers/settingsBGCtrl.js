@@ -11,7 +11,7 @@ let getBG = async (req, res, err) => {
 		if (!url.length) {
 			return res
 				.status(200)
-				.json({ success: false, error: "Episode not found" });
+				.json({ success: false, error: "Settings not found" });
 		}
 		return res.status(200).json({ success: true, url: url });
 	})

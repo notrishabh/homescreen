@@ -1,6 +1,7 @@
 {
   "name": "homescreen",
   "version": "0.1.0",
+  "homepage": "http://homescreen.space/",
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.2.0",
