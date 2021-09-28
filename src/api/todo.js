@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:7000/todoapi",
+  baseURL: "https://api.homescreen.space/todoapi",
 });
 
 export const insertTodo = (payload) => api.post(`/todo`, payload);

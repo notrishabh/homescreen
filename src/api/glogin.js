@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:7000/googlelogin",
+  baseURL: "https://api.homescreen.space/googlelogin",
 });
 
 export const login = (payload) => api.post(`/glogin`, payload);

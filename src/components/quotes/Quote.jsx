@@ -8,7 +8,9 @@ const Quote = () => {
   const [fontAccToTag, setFontAccToTag] = useState(""); //Changing font family in render
   const [tag, setTag] = useState([]); //Quote tag array fetched from api
   const [selectedTags] = useState(
-    JSON.parse(localStorage.getItem("selectedTags"))
+    localStorage.selectedTags
+      ? JSON.parse(localStorage.getItem("selectedTags"))
+      : []
   );
 
   const quoteX = localStorage.quoteX ? JSON.parse(localStorage.quoteX) : 0;

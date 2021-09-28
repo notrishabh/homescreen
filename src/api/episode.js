@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:7000/episodeapi",
+  //baseURL: "http://localhost:7000/episodeapi",
+  baseURL: "https://api.homescreen.space/episodeapi",
 });
 
 export const insertEpisode = (payload) => api.post(`/episode`, payload);

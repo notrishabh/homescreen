@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:7000/settingsbg",
+  baseURL: "https://api.homescreen.space/settingsbg",
 });
 
 export const getBGurl = (id) =>
